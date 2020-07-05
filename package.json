@@ -1,0 +1,35 @@
+{
+  "name": "linked-list-typescript",
+  "version": "0.1.0",
+  "description": "Linked List implementation in Typescript",
+  "main": "LinkedList.js",
+  "dependencies": {
+    "typescript": "^3.9.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/drconopoima/linked-list-typescript.git"
+  },
+  "keywords": [
+    "linked",
+    "list",
+    "algotithms",
+    "data-structures",
+    "data",
+    "structures",
+    "typescript",
+    "js",
+    "ts"
+  ],
+  "author": "Luis Jesus Diaz Manzo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/drconopoima/linked-list-typescript/issues"
+  },
+  "homepage": "https://github.com/drconopoima/linked-list-typescript#readme"
+}
