@@ -1,33 +1,55 @@
 import LinkedListNode from './LinkedListNode';
 
-export default class LinkedList {
+/**
+ * A linked list implementation in TypeScript.
+ * @class LinkedList
+ */
+class LinkedList {
     head: any;
     tail: any;
+    /**
+     * Creates a new instance of LinkedList
+     */
     constructor() {
-        /** @var LinkedListNode **/
+        /**
+         * Pointer to first node in the list.
+         * @property {LinkedListNode} head
+         * @private
+         */
         this.head=null;
-        /** @var LinkedListNode **/
+        /**
+         * Pointer to last node in the list.
+         * @property {LinkedListNode} tail
+         * @private
+         */
         this.tail=null;
     }
+    /**
+     * Inserts some value at the start of the list.
+     * @param {any} value The data to add to the list.
+     * @returns {LinkedList}
+     */
     prepend(value: any) {
         const newNode = new LinkedListNode(value, this.head)
         if (!this.head){
-            // If there is no head yet, the prepended node is the head and tail
+            // special case: there aren't any nodes yet. New node becomes head and tail
             this.head = newNode;
             this.tail = newNode;
             return this
         }
         this.head = newNode;
-        // If there is no tail, the new node is the tail
-        if (!this.tail) {
-            this.tail = newNode;
-        }
         return this;
     }
+    /**
+     * Inserts some value at the end of the list.
+     * @param {any} value The data to add to the list.
+     * @returns {LinkedList}
+     */
     append(value: any) {
+        /* Create a new list node object and store the data in it. */
         const newNode = new LinkedListNode(value);
         if (!this.head) {
-            // If there is no head yet, the appended node is the head and tail
+            // special case: there aren't any nodes yet. New node becomes head and tail
             this.head=newNode;
             this.tail=newNode;
             return this;
@@ -37,17 +59,28 @@ export default class LinkedList {
         this.tail = newNode; // Attach new node to the end
         return this;
     }
+    /**
+     * Removes from the list the node containing target value.
+     * @param {any} value The data contained in the node to remove.
+     * @returns {LinkedListNode} The node that was deleted from the list.
+     */
     delete(value: any) {
+        // special case: Empty list. No nodes to delete.
         if (!this.head) {
             return null;
         }
         let deletedNode=null;
-        // If the head must be deleted then make next node that is different
-        // from the head to be a new head.
+        // special case: Removing the first node
         if (this.head && this.head.value === value) {
             deletedNode = this.head;
+            // just replace the head with the next node in the list
             this.head = this.head.next;
         }
+        /*
+        * The `currentNode` variable is used to iterate over the list nodes.
+        * It starts out pointing to the head and is overwritten inside
+        * of the loop below.
+        */
         let currentNode = this.head;
         if (currentNode !== null) {
             while (currentNode.next) {
@@ -65,6 +98,9 @@ export default class LinkedList {
         if (this.tail.value === value) {
             this.tail = currentNode;
         }
+        // return the node that was just removed from the list
         return deletedNode;
     }
 }
+
+export default LinkedList
