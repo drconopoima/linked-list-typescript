@@ -16,13 +16,13 @@ class LinkedList {
          * @property {LinkedListNode} head
          * @private
          */
-        this.head=null;
+        this.head = null;
         /**
          * Pointer to last node in the list.
          * @property {LinkedListNode} tail
          * @private
          */
-        this.tail=null;
+        this.tail = null;
     }
     /**
      * Inserts some value at the start of the list.
@@ -31,7 +31,7 @@ class LinkedList {
      */
     prepend(value: any) {
         const newNode = new LinkedListNode(value, this.head)
-        if (!this.head){
+        if (!this.head) {
             // special case: there aren't any nodes yet. New node becomes head and tail
             this.head = newNode;
             this.tail = newNode;
@@ -50,8 +50,8 @@ class LinkedList {
         const newNode = new LinkedListNode(value);
         if (!this.head) {
             // special case: there aren't any nodes yet. New node becomes head and tail
-            this.head=newNode;
-            this.tail=newNode;
+            this.head = newNode;
+            this.tail = newNode;
             return this;
         }
         const currentTail = this.tail;
@@ -69,7 +69,7 @@ class LinkedList {
         if (!this.head) {
             return null;
         }
-        let deletedNode=null;
+        let deletedNode = null;
         // special case: Removing the first node
         if (this.head && this.head.value === value) {
             deletedNode = this.head;
@@ -77,10 +77,10 @@ class LinkedList {
             this.head = this.head.next;
         }
         /*
-        * The `currentNode` variable is used to iterate over the list nodes.
-        * It starts out pointing to the head and is overwritten inside
-        * of the loop below.
-        */
+         * The `currentNode` variable is used to iterate over the list nodes.
+         * It starts out pointing to the head and is overwritten inside
+         * of the loop below.
+         */
         let currentNode = this.head;
         if (currentNode !== null) {
             while (currentNode.next) {

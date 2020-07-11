@@ -9,7 +9,7 @@ class LinkedListNode {
      * Creates a new instance of LinkedListNode.
      * @param {any} value: The data to store in the node. 
      */
-    constructor(value: any, next=null) {
+    constructor(value: any, next = null) {
         /**
          * The data that this node stores.
          * @property value
