@@ -30,14 +30,13 @@ class LinkedList {
      * @returns {LinkedList}
      */
     prepend(value: any) {
+        // Make new node the new head, make former head its next node
         const newNode = new LinkedListNode(value, this.head)
-        if (!this.head) {
-            // special case: there aren't any nodes yet. New node becomes head and tail
-            this.head = newNode;
-            this.tail = newNode;
-            return this
-        }
         this.head = newNode;
+        // special case: Empty list. If there is no tail, make newNode the tail
+        if (!this.tail) {
+            this.tail = newNode;
+        }
         return this;
     }
     /**
@@ -48,15 +47,15 @@ class LinkedList {
     append(value: any) {
         /* Create a new list node object and store the data in it. */
         const newNode = new LinkedListNode(value);
+        // special case: Empty list. New node becomes head and tail
         if (!this.head) {
-            // special case: there aren't any nodes yet. New node becomes head and tail
             this.head = newNode;
             this.tail = newNode;
             return this;
         }
         const currentTail = this.tail as LinkedListNode;
         currentTail.next = newNode;
-        this.tail = newNode; // Attach new node to the end
+        this.tail = newNode; // Attach new node to the end of list
         return this;
     }
     /**
@@ -69,30 +68,30 @@ class LinkedList {
         if (!this.head) {
             return null;
         }
+        // placeholder node to remove and return
         let deletedNode = null;
         // special case: Removing the first node
         if (this.head && this.head.value === value) {
             deletedNode = this.head;
-            // just replace the head with the next node in the list
+            // replace head with the next node in the list
             this.head = this.head.next;
         }
         /*
-         * The `currentNode` variable is used to iterate over the list nodes.
-         * It starts out pointing to the head and is overwritten inside
-         * of the loop below.
+         * `currentNode` keeps track of the node we currently are in
+         * while iterating over the linked list.
+         * Set initially to be the head to ensure starting from
+         * the beginning of the list.
          */
         let currentNode = this.head as LinkedListNode;
-        if (currentNode !== null) {
-            while (currentNode.next) {
-                if (currentNode.next.value === value) {
-                    // If next node must be deleted then update next to be
-                    // the node that the came afterwards
-                    deletedNode = currentNode.next;
-                    currentNode.next = currentNode.next.next;
-                    break;
-                }
-                currentNode = currentNode.next;
+        while (currentNode.next) {
+            if (currentNode.next.value === value) {
+                // If next node must be deleted then update next to be
+                // the node that the came afterwards
+                deletedNode = currentNode.next;
+                currentNode.next = currentNode.next.next;
+                break;
             }
+            currentNode = currentNode.next;
         }
         // Check if tail must be deleted.
         if ((this.tail as LinkedListNode).value === value) {
