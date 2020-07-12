@@ -106,11 +106,11 @@ class LinkedList {
     * @returns {LinkedListNode | null} The former tail node of the list.
     */
     deleteTail() {
-        const deletedTail = this.tail;
         // special case: Empty list. No nodes to delete.
         if (!this.head) {
             return null;
         }
+        const deletedTail = this.tail;
         // special case: Only 1 node in list. Clear list and return deleted node
         if (this.head === this.tail) {
             this.head = null;
