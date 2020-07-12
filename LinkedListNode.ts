@@ -1,7 +1,3 @@
-interface CallbackFn < T1, T2 > {
-    (param1: T1): T2;
-}
-
 /**
  * Represents a single node in a LinkedList.
  * @class LinkedListNode
@@ -29,10 +25,10 @@ class LinkedListNode {
     /**
      * Converts the node into a string representation.
      * @returns {string} A string representation of the value for this node.
-     * @param {function{any}: string>} callback: A callback function
+     * @param {function{LinkedListNode}: string} callback: A callback function
      */
-    toString(callback ? : CallbackFn < any, string > ) {
-        return callback ? callback(this.value) : `${this.value}`;
+    toString(callback? : (node: LinkedListNode) => string) {
+        return callback ? callback(this) : `${this.value}`;
     }
 }
 
