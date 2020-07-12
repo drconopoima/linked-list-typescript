@@ -1,35 +1,38 @@
+interface CallbackFn<T1, T2> {
+    (param1: T1): T2;
+  }
+
 /**
  * Represents a single node in a LinkedList.
  * @class LinkedListNode
  */
 class LinkedListNode {
     value: any;
-    next: any;
+    next: LinkedListNode | null;
     /**
      * Creates a new instance of LinkedListNode.
      * @param {any} value: The data to store in the node. 
+     * @param {LinkedListNode} next: The following item in the LinkedList
      */
-    constructor(value: any, next = null) {
+    constructor(value: any, next: LinkedListNode | null = null) {
         /**
          * The data that this node stores.
-         * @property value
-         * @type any
+         * @property {any} value
          */
         this.value = value;
         /**
          * A pointer to the next node in the LinkedList.
-         * @property next
-         * @type ?LinkedListNode
+         * @property {LinkedListNode | null} next
          */
         this.next = next
     }
     /**
      * Converts the node into a string representation.
-     * @returns {String} A string representation of the value for this node.
-     * @param {function} callback: A callback function to apply the value
+     * @returns {string} A string representation of the value for this node.
+     * @param {function{any}: string>} callback: A callback function
      */
-    toString(callback: any) {
-        return callback ? callback(this.value) : `${this.value}`
+    toString(callback?: CallbackFn<any, string>) {
+        return callback ? callback(this.value) : `${this.value}`;
     }
 }
 

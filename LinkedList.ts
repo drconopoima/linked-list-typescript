@@ -5,8 +5,8 @@ import LinkedListNode from './LinkedListNode';
  * @class LinkedList
  */
 class LinkedList {
-    head: any;
-    tail: any;
+    head: LinkedListNode | null;
+    tail: LinkedListNode | null;
     /**
      * Creates a new instance of LinkedList
      */
@@ -54,7 +54,7 @@ class LinkedList {
             this.tail = newNode;
             return this;
         }
-        const currentTail = this.tail;
+        const currentTail = this.tail as LinkedListNode;
         currentTail.next = newNode;
         this.tail = newNode; // Attach new node to the end
         return this;
@@ -81,7 +81,7 @@ class LinkedList {
          * It starts out pointing to the head and is overwritten inside
          * of the loop below.
          */
-        let currentNode = this.head;
+        let currentNode = this.head as LinkedListNode;
         if (currentNode !== null) {
             while (currentNode.next) {
                 if (currentNode.next.value === value) {
@@ -95,7 +95,7 @@ class LinkedList {
             }
         }
         // Check if tail must be deleted.
-        if (this.tail.value === value) {
+        if ((this.tail as LinkedListNode).value === value) {
             this.tail = currentNode;
         }
         // return the node that was just removed from the list
