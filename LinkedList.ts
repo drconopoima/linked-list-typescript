@@ -1,3 +1,4 @@
+import { isThisTypeNode } from 'typescript';
 import LinkedListNode from './LinkedListNode';
 
 /**
@@ -61,7 +62,7 @@ class LinkedList {
     /**
      * Removes from the list the node containing target value.
      * @param {any} value The data contained in the node to remove.
-     * @returns {LinkedListNode} The node that was deleted from the list.
+     * @returns {LinkedListNode | null} The node that was deleted from the list.
      */
     delete(value: any) {
         // special case: Empty list. No nodes to delete.
@@ -70,7 +71,7 @@ class LinkedList {
         }
         // placeholder node to remove and return
         let deletedNode = null;
-        // special case: Removing the first node
+        // special case: Remove first node,
         if (this.head && this.head.value === value) {
             deletedNode = this.head;
             // replace head with the next node in the list
@@ -99,6 +100,36 @@ class LinkedList {
         }
         // return the node that was just removed from the list
         return deletedNode;
+    }
+    /**
+    * Removes the last Node from the list.
+    * @returns {LinkedListNode | null} The former tail node of the list.
+    */
+    deleteTail() {
+        const deletedTail = this.tail;
+        // special case: Empty list. No nodes to delete.
+        if (!this.head) {
+            return null;
+        }
+        // special case: Only 1 node in list. Clear list and return deleted node
+        if (this.head === this.tail) {
+            this.head = null;
+            this.tail = null;
+            return deletedTail
+        }
+        // Two or more nodes in the linked list.
+        // Traverse list until penultimate element
+        let currentNode = this.head as LinkedListNode;
+        while (currentNode.next) {
+            if (!currentNode.next.next) {
+                // delete "next" link for penultimate node
+                currentNode.next = null;
+                break
+            }
+            currentNode = currentNode.next;
+        }
+        this.tail = currentNode;
+        return deletedTail;
     }
 }
 
