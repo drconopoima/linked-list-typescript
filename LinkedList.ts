@@ -1,4 +1,3 @@
-import { isThisTypeNode } from 'typescript';
 import LinkedListNode from './LinkedListNode';
 
 /**
